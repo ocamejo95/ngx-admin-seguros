@@ -20,6 +20,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +41,7 @@ import {
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
   ],
+  providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}],
   bootstrap: [AppComponent],
 })
 export class AppModule {
