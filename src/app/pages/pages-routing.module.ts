@@ -54,6 +54,11 @@ const routes: Routes = [{
         .then(m => m.ChartsModule),
     },
     {
+      path: 'company-1',
+      loadChildren: () => import('./company-1/company-1.module')
+        .then(m => m.Company1Module),
+    },
+    {
       path: 'editors',
       loadChildren: () => import('./editors/editors.module')
         .then(m => m.EditorsModule),
