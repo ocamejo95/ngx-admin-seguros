@@ -3,22 +3,33 @@
     <nb-card>
       <nb-card-header>Upload Files</nb-card-header>
       <nb-card-body>
-          <div class="form-group">
-            <label class="label">Ambetter_BOB_December</label>
-            <input type="file" nbInput fullWidth (change)="catchFile1($event)" >
-          </div>
-          <div class="form-group">
-            <label class="label">Ambetter_Nov_Comm</label>
-            <input type="file" nbInput fullWidth (change)="catchFile2($event)">
-          </div>
-          <div class="form-group">
-            <label class="label">Sherpa_File</label>
-            <input type="file" nbInput fullWidth (change)="catchFile3($event)">
-          </div>
+        <div class="form-group">
+          <label class="label">Insurance Company Book of Bussines(BOB)</label>
+          <input (change)="catchFile1($event)" fullWidth nbInput type="file">
+        </div>
+        <div class="form-group">
+          <label class="label">Insurance Company Commission Statement(CS)</label>
+          <input (change)="catchFile2($event)" fullWidth nbInput type="file">
+        </div>
+        <div class="form-group">
+          <label class="label">Sherpa File</label>
+          <input (change)="catchFile3($event)" fullWidth nbInput type="file">
+        </div>
 
-          <button type="submit" (click)="submitFiles()" nbButton status="primary">Submit</button>
+        <button (click)="submitFiles()" nbButton status="primary" type="submit">Submit</button>
       </nb-card-body>
     </nb-card>
   </div>
-
+  <div class="col-lg-4">
+    <nb-card>
+      <nb-card-header>Select Company</nb-card-header>
+      <nb-card-body>
+        <nb-select selected="1">
+          <nb-option value="1">Ambetter</nb-option>
+          <nb-option value="2">Ambetter 2</nb-option>
+          <nb-option value="3">Ambetter 3</nb-option>
+        </nb-select>
+      </nb-card-body>
+    </nb-card>
+  </div>
 </div>

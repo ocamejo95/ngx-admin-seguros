@@ -12,19 +12,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'ALi & Orel',
+    title: 'Ambetter',
     icon: 'layout-outline',
     children: [
       {
-        title: 'Indicador 1',
+        title: 'Clients Only in Sherpa',
         link: '/pages/company-1/indicador-1',
       },
       {
-        title: 'Indicador 2',
+        title: 'Clients Only CS',
         link: '/pages/company-1/indicador-2',
       },
       {
-        title: 'Indicador 3',
+        title: 'Clients Only in Sherpa',
         link: '/pages/company-1/indicador-3',
       },
     ],
