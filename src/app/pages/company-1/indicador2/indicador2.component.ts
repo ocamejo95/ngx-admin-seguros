@@ -8,6 +8,7 @@ import {UploadFilesService} from '../services/upload-files.service';
   styleUrls: ['./indicador2.component.scss'],
 })
 export class Indicador2Component implements OnInit {
+  public cantMony: number;
   settings = {
 
     actions: false,
@@ -34,6 +35,7 @@ export class Indicador2Component implements OnInit {
         type: 'boolean',
       },
     },
+    pager: { display: true, perPage: 15},
   };
 
   source: LocalDataSource = new LocalDataSource();
@@ -41,6 +43,7 @@ export class Indicador2Component implements OnInit {
 
   constructor(private uploadFilesService: UploadFilesService) {
     this.source = uploadFilesService.list.clientsOnlyCS;
+    this.cantMony = this.uploadFilesService.list.cantMony;
   }
 
   ngOnInit(): void {

@@ -8,6 +8,7 @@ import {UploadFilesService} from '../services/upload-files.service';
   styleUrls: ['./indicador3.component.scss'],
 })
 export class Indicador3Component implements OnInit {
+  public cantMony: number;
   settings = {
 
     actions: false,
@@ -26,6 +27,7 @@ export class Indicador3Component implements OnInit {
         type: 'string',
       },
     },
+    pager: { display: true, perPage: 15},
   };
 
   source: LocalDataSource = new LocalDataSource();
@@ -33,6 +35,7 @@ export class Indicador3Component implements OnInit {
 
   constructor(private uploadFilesService: UploadFilesService) {
     this.source = uploadFilesService.list.elementsOnlySherpa;
+    this.cantMony = this.uploadFilesService.list.cantMony;
   }
 
   ngOnInit(): void {
