@@ -16,9 +16,9 @@ export const routes: Routes = [
       .then(m => m.PagesModule),
   },
   {
-    path: 'domain',
-    loadChildren: () => import('./domain/domain.module')
-      .then(m => m.DomainModule),
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module')
+      .then(m => m.AuthModule),
   },
   {
     path: 'auth',

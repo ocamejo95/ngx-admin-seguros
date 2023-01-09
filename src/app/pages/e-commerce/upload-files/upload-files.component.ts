@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UploadFilesService} from '../../company-1/services/upload-files.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'ngx-upload-files',
@@ -7,11 +8,20 @@ import {UploadFilesService} from '../../company-1/services/upload-files.service'
   styleUrls: ['./upload-files.component.scss'],
 })
 export class UploadFilesComponent implements OnInit {
-  public file1: any;
-  public file2: any;
-  public file3: any;
+  public file1: File;
+  public file2: File;
+  public file3: File;
+  invalid = false;
 
-  constructor(private uploadFilesService: UploadFilesService) {
+  public uploadFilesForm = this.formBuilder.group({
+    fil1: ['', Validators.required],
+    fil2: ['', Validators.required],
+    fil3: ['', Validators.required],
+  });
+
+
+  constructor(private uploadFilesService: UploadFilesService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -20,6 +30,8 @@ export class UploadFilesComponent implements OnInit {
 
   catchFile1(event: any) {
     this.file1 = event.target.files[0];
+    this.invalid = this.file1.type !== 'text/csv';
+
   }
 
   catchFile2(event: any) {
@@ -33,5 +45,7 @@ export class UploadFilesComponent implements OnInit {
   submitFiles() {
     this.uploadFilesService.sendFiles(this.file1, this.file2, this.file3);
   }
+
+
 
 }

@@ -3,23 +3,35 @@
     <nb-card>
       <nb-card-header>Upload Files</nb-card-header>
       <nb-card-body>
-        <div class="form-group">
-          <label class="label">Insurance Company Book of Bussines(BOB)</label>
-          <input (change)="catchFile1($event)" fullWidth nbInput type="file">
-        </div>
-        <div class="form-group">
-          <label class="label">Insurance Company Commission Statement(CS)</label>
-          <input (change)="catchFile2($event)" fullWidth nbInput type="file">
-        </div>
-        <div class="form-group">
-          <label class="label">Sherpa File</label>
-          <input (change)="catchFile3($event)" fullWidth nbInput type="file">
-        </div>
+        <form [formGroup]="uploadFilesForm">
+          <div class="form-group">
+            <label class="label">Insurance Company Book of Bussines(BOB)</label>
+            <input (change)="catchFile1($event)" [status]="invalid ? 'danger' : 'primary'" formControlName="fil1"
+                   fullWidth nbInput type="file">
+            <div *ngIf="invalid"><p class="caption status-danger">Attach a .csv file</p></div>
+          </div>
+          <div class="form-group">
+            <label class="label">Insurance Company Commission Statement(CS)</label>
+            <input (change)="catchFile2($event)" [status]="invalid ? 'danger' : 'primary'" formControlName="fil2"
+                   fullWidth nbInput type="file">
+            <div *ngIf="invalid"><p class="caption status-danger">Attach a .csv file</p></div>
+          </div>
+          <div class="form-group">
+            <label class="label">Sherpa File</label>
+            <input (change)="catchFile3($event)" [status]="invalid ? 'danger' : 'primary'" formControlName="fil3"
+                   fullWidth nbInput type="file">
+            <div *ngIf="invalid"><p class="caption status-danger">Attach a .csv file</p></div>
+          </div>
 
-        <button (click)="submitFiles()" nbButton status="primary" type="submit">Submit</button>
+          <button (click)="submitFiles()" [disabled]="uploadFilesForm.invalid" nbButton status="primary" type="submit">
+            Submit
+          </button>
+
+        </form>
       </nb-card-body>
     </nb-card>
   </div>
+
   <div class="col-lg-4">
     <nb-card>
       <nb-card-header>Select Company</nb-card-header>
