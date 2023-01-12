@@ -1,14 +1,16 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
 
-import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ECommerceComponent } from './e-commerce/e-commerce.component';
-import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import {PagesComponent} from './pages.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ECommerceComponent} from './home-page/e-commerce.component';
+import {NotFoundComponent} from './miscellaneous/not-found/not-found.component';
+import {AuthGuard} from '../auth/guards/auth.guard';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
+  canActivate: [AuthGuard],
   children: [
     {
       path: 'dashboard',
@@ -57,6 +59,11 @@ const routes: Routes = [{
       path: 'company-1',
       loadChildren: () => import('./company-1/company-1.module')
         .then(m => m.Company1Module),
+    },
+    {
+      path: 'seguridad',
+      loadChildren: () => import('./seguridad/seguridad.module')
+        .then(m => m.SeguridadModule),
     },
     {
       path: 'editors',

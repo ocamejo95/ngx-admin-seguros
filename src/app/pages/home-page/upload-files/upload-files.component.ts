@@ -25,7 +25,6 @@ export class UploadFilesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.submitFiles();
   }
 
   catchFile1(event: any) {
@@ -45,7 +44,6 @@ export class UploadFilesComponent implements OnInit {
   submitFiles() {
     this.uploadFilesService.sendFiles(this.file1, this.file2, this.file3);
   }
-
 
 
 }

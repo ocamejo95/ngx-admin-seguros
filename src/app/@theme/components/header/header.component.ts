@@ -5,6 +5,7 @@ import {UserData} from '../../../@core/data/users';
 import {LayoutService} from '../../../@core/utils';
 import {map, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'ngx-header',
@@ -39,8 +40,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [
-    {title: 'My Profile', link: '', icon: 'arrow-up-c'},
-    {title: 'Log out', link: '/auth/login', icon: 'nb-close-circled'},
+    {title: 'My Profile', link: ''},
+    {title: 'Log out', link: '/auth/login', data: {id: 'logout'}},
   ];
 
   constructor(private sidebarService: NbSidebarService,
@@ -48,15 +49,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private authService: AuthService,
+  ) {
+    this.onClickNbMenu();
   }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.eva);
+    this.user = this.authService.usuario;
 
     const {xl} = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -93,5 +95,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  onClickNbMenu() {
+    this.menuService.onItemClick().subscribe((event) => {
+      if (event.item.title === 'Log out') {
+        this.authService.removeToken();
+      }
+    });
   }
 }
