@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
 import {UserService} from '../services/user.service';
 import {NbToastrService} from '@nebular/theme';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-gestionar-usuarios',
@@ -67,11 +68,23 @@ export class GestionarUsuariosComponent implements OnInit {
 
 
   onDeleteConfirm(event) {
-    this.userService.deleteUser(event.data._id)
-      .subscribe(resp => {
-        this.getListUser();
-        this.toastrService.success('User deleted successfully!', 'Done!');
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#497bff',
+      cancelButtonColor: '#ff4274',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(event.data._id)
+          .subscribe(resp => {
+            this.getListUser();
+            this.toastrService.success('User deleted successfully!', 'Done!');
+          });
+      }
+    });
   }
 
   onUpdateConfirm(event) {
@@ -79,8 +92,7 @@ export class GestionarUsuariosComponent implements OnInit {
   }
 
   onAddConfirm(event) {
-    console.log('Addddddd');
-    this.toastrService.success('Done!', 'asdasd');
+
   }
 
 }
