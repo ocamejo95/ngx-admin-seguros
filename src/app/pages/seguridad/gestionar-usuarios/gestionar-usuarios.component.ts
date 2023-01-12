@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
 import {UserService} from '../services/user.service';
+import {NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-gestionar-usuarios',
@@ -49,7 +50,8 @@ export class GestionarUsuariosComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private toastrService: NbToastrService) {
   }
 
   ngOnInit(): void {
@@ -66,9 +68,9 @@ export class GestionarUsuariosComponent implements OnInit {
 
   onDeleteConfirm(event) {
     this.userService.deleteUser(event.data._id)
-      .subscribe(res => {
+      .subscribe(resp => {
         this.getListUser();
-        console.log('Se eliminooooo');
+        this.toastrService.success('User deleted successfully!', 'Done!');
       });
   }
 
@@ -78,6 +80,7 @@ export class GestionarUsuariosComponent implements OnInit {
 
   onAddConfirm(event) {
     console.log('Addddddd');
+    this.toastrService.success('Done!', 'asdasd');
   }
 
 }
