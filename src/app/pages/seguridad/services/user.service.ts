@@ -21,7 +21,7 @@ export class UserService {
     return this.http.get(`${environment.API_URL_LOCAL}/${id}`);
   }
 
-  updateUser(user, id: string): Observable<any> {
+  updateUser(user, id): Observable<any> {
     return this.http.put(`${environment.API_URL_LOCAL}/user/${id}`, user);
   }
 

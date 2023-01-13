@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   public loginForm = this.formBuilder.group({
-    email: ['ocamejo777@gmail.com', [Validators.required, Validators.email]],
+    email: ['ocamejo@gmail.com', [Validators.required, Validators.email]],
     password: ['123456', Validators.required],
     rememberme: [false],
 
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       .subscribe((resp: any) => {
         this.router.navigate(['/pages']);
       });
-
   }
 
 }

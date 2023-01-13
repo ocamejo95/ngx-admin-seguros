@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
 import {UserService} from '../services/user.service';
 import {NbToastrService} from '@nebular/theme';
+import {AuthService} from '../../../auth/services/auth.service';
 import Swal from 'sweetalert2';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'ngx-gestionar-usuarios',
@@ -10,6 +12,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./gestionar-usuarios.component.scss'],
 })
 export class GestionarUsuariosComponent implements OnInit {
+  public ifShow = false;
+  public title;
+
+  public createUserForm = this.formBuilder.group({
+    id: [],
+    name: ['', Validators.required],
+    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+  });
+
   settings = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
@@ -40,7 +53,6 @@ export class GestionarUsuariosComponent implements OnInit {
         type: 'string',
       },
     },
-    pager: {display: true, perPage: 15},
     actions: {
       add: true,
       position: 'right',
@@ -51,8 +63,11 @@ export class GestionarUsuariosComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
+
   constructor(private userService: UserService,
-              private toastrService: NbToastrService) {
+              private formBuilder: FormBuilder,
+              private toastrService: NbToastrService,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -66,8 +81,16 @@ export class GestionarUsuariosComponent implements OnInit {
       });
   }
 
-
   onDeleteConfirm(event) {
+    if (event.data._id === this.authService.usuario._id) {
+      return Swal.fire({
+        title: 'Error',
+        text: 'You can not delete yourself!',
+        icon: 'error',
+        confirmButtonColor: '#497bff',
+      });
+    }
+
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',
@@ -88,11 +111,46 @@ export class GestionarUsuariosComponent implements OnInit {
   }
 
   onUpdateConfirm(event) {
-    console.log(event.data, 'siii');
+    this.title = 'Edit User';
+    this.ifShow = true;
+    this.createUserForm = this.formBuilder.group({
+      id: [event.data._id],
+      name: [event.data.name, Validators.required],
+      username: [event.data.username, Validators.required],
+      email: [event.data.email, [Validators.required, Validators.email]],
+      password: [],
+    });
+
   }
 
-  onAddConfirm(event) {
+  openForm() {
+    this.title = 'Create User';
+    this.ifShow = true;
+    this.createUserForm.reset();
+  }
 
+  cancel() {
+    this.ifShow = false;
+    this.createUserForm.reset();
+  }
+
+  submitCreate() {
+    this.authService.register(this.createUserForm.value)
+      .subscribe(resp => {
+        this.getListUser();
+        this.toastrService.success('User created successfully!', 'Done!');
+        this.ifShow = false;
+      });
+  }
+
+  submitUpdate() {
+    this.userService.updateUser(this.createUserForm.value, this.createUserForm.value.id)
+      .subscribe(resp => {
+        console.log(resp, 'edito');
+        this.getListUser();
+        this.toastrService.success('User Edited successfully!', 'Done!');
+        this.ifShow = false;
+      });
   }
 
 }
