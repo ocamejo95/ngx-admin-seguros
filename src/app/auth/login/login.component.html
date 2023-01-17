@@ -2,22 +2,43 @@
 <p class="sub-title">Hello! Log in with your email.</p>
 
 <form (submit)="login()"
-      [formGroup]="loginForm" aria-labelledby="title">
+      [formGroup]="loginForm"
+      aria-labelledby="title"
+      autocomplete="off">
 
   <div class="form-control-group">
     <label class="label" for="input-email">Email address:</label>
-    <input autofocus fullWidth id="input-email" formControlName="email" name="email" nbInput pattern=".+@.+\..+" placeholder="Email address">
+    <input autofocus formControlName="email" fullWidth id="input-email" name="email" nbInput
+           placeholder="Email address">
+    <ng-container *ngIf="loginForm.get('email')?.invalid && loginForm.get('email').touched">
+      <p *ngIf="loginForm.get('email').errors?.required" class="caption status-danger">
+        Email is required!
+      </p>
+      <p *ngIf="loginForm.get('email').errors?.email" class="caption status-danger">
+        Email should be the real one!
+      </p>
+    </ng-container>
   </div>
 
   <div class="form-control-group">
     <label class="label" for="input-password">Password:</label>
-    <input fullWidth id="input-password" formControlName="password" name="password" nbInput placeholder="Password" type="password">
-  </div>
-  <div class="form-control-group accept-group">
-    <nb-checkbox name="rememberMe" formControlName="rememberme">Remember me</nb-checkbox>
+    <input formControlName="password" fullWidth id="input-password" name="password" nbInput placeholder="Password"
+           type="password">
+    <ng-container *ngIf="loginForm.get('password')?.invalid && loginForm.get('password').touched">
+      <p *ngIf="loginForm.get('password').errors?.required" class="caption status-danger">
+        Password is required!
+      </p>
+      <p *ngIf="loginForm.get('password').errors?.minlength" class="caption status-danger">
+        The minimum of characters is 6!
+      </p>
+    </ng-container>
   </div>
 
-  <button fullWidth nbButton type="submit" status="success">Sign In</button>
+  <div class="form-control-group accept-group">
+    <nb-checkbox formControlName="rememberme" name="rememberMe">Remember me</nb-checkbox>
+  </div>
+
+  <button [disabled]="loginForm.invalid" fullWidth nbButton status="success" type="submit">Sign In</button>
 </form>
 
 <section aria-label="Register" class="another-action">

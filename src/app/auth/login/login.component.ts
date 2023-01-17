@@ -10,8 +10,8 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   public loginForm = this.formBuilder.group({
-    email: ['ocamejo@gmail.com', [Validators.required, Validators.email]],
-    password: ['123456', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     rememberme: [false],
 
   });
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.loginForm.get('password').errors.minlength);
   }
 
   login() {
