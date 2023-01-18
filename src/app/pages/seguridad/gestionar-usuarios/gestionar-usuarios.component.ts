@@ -144,13 +144,13 @@ export class GestionarUsuariosComponent implements OnInit {
   }
 
   submitUpdate() {
-    this.userService.updateUser(this.createUserForm.value, this.createUserForm.value.id)
-      .subscribe(resp => {
-        console.log(resp, 'edito');
-        this.getListUser();
-        this.toastrService.success('User Edited successfully!', 'Done!');
-        this.ifShow = false;
-      });
+    // this.userService.updateUser(this.createUserForm.value, this.createUserForm.value.id)
+    //   .subscribe(resp => {
+    //     console.log(resp, 'edito');
+    //     this.getListUser();
+    //     this.toastrService.success('User Edited successfully!', 'Done!');
+    //     this.ifShow = false;
+    //   });
   }
 
 }

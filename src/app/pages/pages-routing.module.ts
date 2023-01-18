@@ -66,6 +66,11 @@ const routes: Routes = [{
         .then(m => m.SeguridadModule),
     },
     {
+      path: 'perfil-user',
+      loadChildren: () => import('./perfil-usuario/perfil-usuario.module')
+        .then(m => m.PerfilUsuarioModule),
+    },
+    {
       path: 'editors',
       loadChildren: () => import('./editors/editors.module')
         .then(m => m.EditorsModule),

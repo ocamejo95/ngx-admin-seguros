@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-lg-4">
+    <nb-card>
+      <nb-card-body>
+        <div class="align-items-center">
+          <img alt="Profile" class="rounded-circle"
+               src="https://ocamejo95.github.io/front-seguros/assets/img/profile-img.jpg">
+          <h5>{{ datosUser.name }}</h5>
+          <p>{{ datosUser.username }}</p>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-8">
+    <nb-card size="small">
+      <nb-tabset>
+        <nb-tab tabTitle="Overview" class="animate__animated animate__fadeIn mt-2">
+          <h5 class="card-title">Profile Details</h5>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label ">Full Name:</div>
+            <div class="col-lg-9 col-md-8"><p>{{ datosUser.name }}</p></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label ">Username:</div>
+            <div class="col-lg-9 col-md-8"><p>{{ datosUser.username }}</p></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label ">Email:</div>
+            <div class="col-lg-9 col-md-8"><p>{{ datosUser.email }}</p></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label ">Role:</div>
+            <div class="col-lg-9 col-md-8"><p>Vacio</p></div>
+          </div>
+        </nb-tab>
+
+        <nb-tab tabTitle="Edit Profile" class="animate__animated animate__fadeIn mt-2">
+          <span>Edit Profile</span>
+        </nb-tab>
+
+        <nb-tab tabTitle="Change Password" class="animate__animated animate__fadeIn mt-2">
+          <form>
+            <div class="form-group row">
+              <label for="inputEmail1" class="label col-sm-3 col-form-label">Current Password</label>
+              <div class="col-sm-9">
+                <input type="password" nbInput fullWidth id="inputEmail1" placeholder="Current Password">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword2" class="label col-sm-3 col-form-label">New Password</label>
+              <div class="col-sm-9">
+                <input type="password" nbInput fullWidth id="inputPassword2" placeholder="New Password">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword2" class="label col-sm-3 col-form-label">Re-enter New Password</label>
+              <div class="col-sm-9">
+                <input type="password" nbInput fullWidth id="inputPassword3" placeholder="Re-enter New Password">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-9">
+                <button type="submit" nbButton status="primary">Change Password</button>
+              </div>
+            </div>
+          </form>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+</div>

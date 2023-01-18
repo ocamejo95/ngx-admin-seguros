@@ -29,8 +29,7 @@ export class UploadFilesComponent implements OnInit {
 
   catchFile1(event: any) {
     this.file1 = event.target.files[0];
-    this.invalid = this.file1.type !== 'text/csv';
-
+    // this.invalid = this.file1.type !== 'text/csv';
   }
 
   catchFile2(event: any) {

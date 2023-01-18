@@ -8,7 +8,9 @@
 
   <div class="form-control-group">
     <label class="label" for="input-email">Email address:</label>
-    <input autofocus formControlName="email" fullWidth id="input-email" name="email" nbInput
+    <input [status]="loginForm.get('email')?.invalid && loginForm.get('email').touched ? 'danger' : 'basic'"
+           formControlName="email" fullWidth
+           id="input-email" name="email" nbInput
            placeholder="Email address">
     <ng-container *ngIf="loginForm.get('email')?.invalid && loginForm.get('email').touched">
       <p *ngIf="loginForm.get('email').errors?.required" class="caption status-danger">
@@ -22,7 +24,9 @@
 
   <div class="form-control-group">
     <label class="label" for="input-password">Password:</label>
-    <input formControlName="password" fullWidth id="input-password" name="password" nbInput placeholder="Password"
+    <input [status]="loginForm.get('password')?.invalid && loginForm.get('password').touched ? 'danger' : 'basic'"
+           formControlName="password" fullWidth
+           id="input-password" name="password" nbInput placeholder="Password"
            type="password">
     <ng-container *ngIf="loginForm.get('password')?.invalid && loginForm.get('password').touched">
       <p *ngIf="loginForm.get('password').errors?.required" class="caption status-danger">

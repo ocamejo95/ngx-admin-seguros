@@ -8,19 +8,19 @@
             <label class="label">Insurance Company Book of Bussines(BOB)</label>
             <input (change)="catchFile1($event)" [status]="invalid ? 'danger' : 'basic'" formControlName="fil1"
                    fullWidth nbInput type="file">
-            <div *ngIf="invalid"><p class="caption status-danger">Attach a .csv file</p></div>
+            <!--            <ng-container>-->
+            <!--              <p class="caption status-danger" *ngIf="uploadFilesForm.get('fil1').errors?.required">File 1 es required</p>-->
+            <!--            </ng-container>-->
           </div>
           <div class="form-group">
             <label class="label">Insurance Company Commission Statement(CS)</label>
             <input (change)="catchFile2($event)" [status]="invalid ? 'danger' : 'basic'" formControlName="fil2"
                    fullWidth nbInput type="file">
-            <div *ngIf="invalid"><p class="caption status-danger">Attach a .csv file</p></div>
           </div>
           <div class="form-group">
             <label class="label">Sherpa File</label>
             <input (change)="catchFile3($event)" [status]="invalid ? 'danger' : 'basic'" formControlName="fil3"
                    fullWidth nbInput type="file">
-            <div *ngIf="invalid"><p class="caption status-danger">Attach a .csv file</p></div>
           </div>
 
           <button (click)="submitFiles()" [disabled]="uploadFilesForm.invalid" nbButton status="primary" type="submit">

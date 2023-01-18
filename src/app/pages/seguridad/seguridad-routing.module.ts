@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {GestionarUsuariosComponent} from './gestionar-usuarios/gestionar-usuarios.component';
 import {GestionarRolesComponent} from './gestionar-roles/gestionar-roles.component';
 
@@ -12,4 +12,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SeguridadRoutingModule { }
+export class SeguridadRoutingModule {
+}

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-login',
@@ -22,14 +23,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.loginForm.get('password').errors.minlength);
   }
 
   login() {
     this.authService.login(this.loginForm.value)
       .subscribe((resp: any) => {
-        this.router.navigate(['/pages']);
-      });
+          this.router.navigate(['/pages']);
+        },
+        err => {
+          Swal.fire('Oops...', err.error.message, 'error');
+        });
   }
 
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-register',
@@ -28,8 +29,12 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.registerForm.value)
       .subscribe(resp => {
-        console.log(resp);
-        this.router.navigate(['/auth/login']);
-      });
+          console.log(resp);
+          this.router.navigate(['/auth/login']);
+        },
+        err => {
+          Swal.fire('Oops...', err.error.message, 'error');
+        })
+    ;
   }
 }
