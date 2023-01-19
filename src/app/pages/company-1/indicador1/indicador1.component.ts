@@ -34,11 +34,11 @@ export class Indicador1Component implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private uploadFilesService: UploadFilesService) {
-    this.source = uploadFilesService.list.elementsOnlyCompanyBOB;
-    this.cantMony = uploadFilesService.list.cantMony;
   }
 
   ngOnInit(): void {
+    this.source = this.uploadFilesService.list.elementsOnlyCompanyBOB;
+    this.cantMony = this.uploadFilesService.list.cantMony;
   }
 
 }

@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          <button (click)="this.createUserForm.get('id').value != null ? submitUpdate() : submitCreate() " nbButton status="primary">Submit</button>
+          <button (click)="this.createUserForm.get('id').value !== null ? submitUpdate() : submitCreate() " nbButton status="primary">Submit</button>
           <button (click)="cancel()" class="cancel" nbButton status="danger">Cancel</button>
         </div>
       </div>

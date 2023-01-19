@@ -27,18 +27,18 @@ export class Indicador3Component implements OnInit {
         type: 'string',
       },
     },
-    pager: { display: true, perPage: 15},
+    pager: {display: true, perPage: 15},
   };
 
   source: LocalDataSource = new LocalDataSource();
 
 
   constructor(private uploadFilesService: UploadFilesService) {
-    this.source = uploadFilesService.list.elementsOnlySherpa;
-    this.cantMony = this.uploadFilesService.list.cantMony;
   }
 
   ngOnInit(): void {
+    this.source = this.uploadFilesService.list.elementsOnlySherpa;
+    this.cantMony = this.uploadFilesService.list.cantMony;
   }
 
 }
