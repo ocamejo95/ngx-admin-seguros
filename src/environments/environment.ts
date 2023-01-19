@@ -10,6 +10,5 @@
 
 export const environment = {
   production: false,
-  API_URL_LOCAL: 'http://localhost:3000',
-  API_INTERNET: 'http://ec2-184-73-148-211.compute-1.amazonaws.com/care/sherpa/ambetter',
+  API_INTERNET: 'https://backend-express-seguros.herokuapp.com',
 };

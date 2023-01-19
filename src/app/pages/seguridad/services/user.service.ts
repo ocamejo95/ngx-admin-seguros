@@ -12,21 +12,21 @@ export class UserService {
   }
 
   getAllUser(): Observable<any> {
-    return this.http.get(`${environment.API_URL_LOCAL}/user`, {
+    return this.http.get(`${environment.API_INTERNET}/user`, {
       headers: {'x-token': this.token},
     });
   }
 
   getUserById(id: string): Observable<any> {
-    return this.http.get(`${environment.API_URL_LOCAL}/${id}`);
+    return this.http.get(`${environment.API_INTERNET}/${id}`);
   }
 
   updateUser(user, id): Observable<any> {
-    return this.http.put(`${environment.API_URL_LOCAL}/user/${id}`, user);
+    return this.http.put(`${environment.API_INTERNET}/user/${id}`, user);
   }
 
   deleteUser(id: string): Observable<any> {
-    return this.http.delete(`${environment.API_URL_LOCAL}/user/${id}`);
+    return this.http.delete(`${environment.API_INTERNET}/user/${id}`);
   }
 
   get token() {
