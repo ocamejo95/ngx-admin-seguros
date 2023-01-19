@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [
-    {title: 'My Profile', link: '/pages/perfil-user/profile'},
-    {title: 'Log out', link: '/auth/login', data: {id: 'logout'}},
+    {title: 'My Profile', link: '/pages/perfil-user/profile', icon: 'person-outline'},
+    {title: 'Log out', link: '/auth/login', data: {id: 'logout'}, icon: 'arrow-circle-right-outline'},
   ];
 
   constructor(private sidebarService: NbSidebarService,

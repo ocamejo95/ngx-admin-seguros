@@ -36,15 +36,39 @@
         </nb-tab>
 
         <nb-tab tabTitle="Edit Profile" class="animate__animated animate__fadeIn mt-2">
-          <span>Edit Profile</span>
+          <form>
+            <div class="form-group row">
+              <label for="inputName" class="label col-sm-3 col-form-label">Full name</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput fullWidth id="inputName" placeholder="Full name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputUsername" class="label col-sm-3 col-form-label">Username</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput fullWidth id="inputUsername" placeholder="Username">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="label col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input type="text" nbInput fullWidth id="inputEmail" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-9">
+                <button type="submit" nbButton status="primary">Submit</button>
+              </div>
+            </div>
+          </form>
         </nb-tab>
 
         <nb-tab tabTitle="Change Password" class="animate__animated animate__fadeIn mt-2">
           <form>
             <div class="form-group row">
-              <label for="inputEmail1" class="label col-sm-3 col-form-label">Current Password</label>
+              <label for="inputCurrent" class="label col-sm-3 col-form-label">Current Password</label>
               <div class="col-sm-9">
-                <input type="password" nbInput fullWidth id="inputEmail1" placeholder="Current Password">
+                <input type="password" nbInput fullWidth id="inputCurrent" placeholder="Current Password">
               </div>
             </div>
             <div class="form-group row">
