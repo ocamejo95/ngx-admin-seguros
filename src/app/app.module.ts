@@ -41,7 +41,7 @@ import {APP_BASE_HREF} from '@angular/common';
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/app'}],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
