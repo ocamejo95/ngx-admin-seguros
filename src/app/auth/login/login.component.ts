@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   passwordRegex: string = '((?=.*\d)(?=.*[a-zA-Z]).{4,20})';
+  remember: boolean = false;
   submitted = false;
   errors: string;
   public loginForm = this.formBuilder.group({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(20)]],
-    rememberme: [false],
+    rememberme: [],
 
   });
 
@@ -29,9 +30,28 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const email = localStorage.getItem('email') || '';
+    if (email.length > 1) {
+      this.remember = true;
+    }
+
+    this.loginForm = this.formBuilder.group({
+      email: [email, [Validators.required, Validators.pattern('.+@.+\..+')]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)]],
+      rememberme: [this.remember],
+    });
   }
 
   login() {
+    if (this.loginForm.value.rememberme) {
+      localStorage.setItem('email', this.loginForm.value.email);
+    } else {
+      localStorage.removeItem('email');
+    }
+
     this.authService.login(this.loginForm.value)
       .subscribe((resp: any) => {
           this.submitted = true;
