@@ -12,9 +12,7 @@ export class UserService {
   }
 
   getAllUser(): Observable<any> {
-    return this.http.get(`${environment.API_INTERNET}/user`, {
-      headers: {'x-token': this.token},
-    });
+    return this.http.get(`${environment.API_INTERNET}/user`);
   }
 
   getUserById(id: string): Observable<any> {

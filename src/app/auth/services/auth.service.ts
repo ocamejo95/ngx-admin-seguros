@@ -30,17 +30,16 @@ export class AuthService {
   }
 
   validarToken() {
-    return this.http.get(`${environment.API_INTERNET}/renew`, {
-      headers: {'x-token': this.token},
-    }).pipe(
-      map((resp: any) => {
-        this.usuario = resp.usuario;
-        localStorage.setItem('token', resp.token);
-        return true;
-      }),
+    return this.http.get(`${environment.API_INTERNET}/renew`)
+      .pipe(
+        map((resp: any) => {
+          this.usuario = resp.usuario;
+          localStorage.setItem('token', resp.token);
+          return true;
+        }),
 
-      catchError(error => of(false)),
-    );
+        catchError(error => of(false)),
+      );
   }
 
   get token() {
