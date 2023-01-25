@@ -10,11 +10,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  passwordRegex: string = '((?=.*\d)(?=.*[a-zA-Z]).{4,20})';
   public registerForm = this.formBuilder.group({
     name: ['', Validators.required],
     username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    email: ['', [Validators.required, Validators.pattern('.+@.+\..+')]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
 
   });
 

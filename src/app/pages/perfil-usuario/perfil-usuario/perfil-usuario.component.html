@@ -75,35 +75,47 @@
             </div>
             <div class="form-group row">
               <div class="offset-sm-3 col-sm-9">
-                <button class="mb-5" [disabled]="perfilForm.invalid" nbButton status="primary" type="submit">Submit</button>
+                <button [disabled]="perfilForm.invalid" class="mb-5" nbButton status="primary" type="submit">Submit
+                </button>
               </div>
             </div>
           </form>
         </nb-tab>
 
         <nb-tab class="animate__animated animate__fadeIn mt-2" tabTitle="Change Password">
-          <form>
+          <form
+            (submit)="cambiarPassword()"
+            [formGroup]="passwordForm">
             <div class="form-group row">
               <label class="label col-sm-3 col-form-label" for="inputCurrent">Current Password</label>
               <div class="col-sm-9">
-                <input fullWidth id="inputCurrent" nbInput placeholder="Current Password" type="password">
+                <input formControlName="c_password" fullWidth id="inputCurrent" nbInput placeholder="Current Password"
+                       type="password">
               </div>
             </div>
             <div class="form-group row">
               <label class="label col-sm-3 col-form-label" for="inputPassword2">New Password</label>
               <div class="col-sm-9">
-                <input fullWidth id="inputPassword2" nbInput placeholder="New Password" type="password">
+                <input formControlName="password" fullWidth id="inputPassword2" nbInput placeholder="New Password"
+                       type="password">
+                <ng-container *ngIf="passwordForm.get('password')?.invalid && passwordForm.get('password').touched">
+                  <p *ngIf="passwordForm.get('password').errors?.required" class="caption status-danger">
+                    Password is required!
+                  </p>
+                </ng-container>
               </div>
             </div>
             <div class="form-group row">
               <label class="label col-sm-3 col-form-label" for="inputPassword2">Re-enter New Password</label>
               <div class="col-sm-9">
-                <input fullWidth id="inputPassword3" nbInput placeholder="Re-enter New Password" type="password">
+                <input formControlName="r_password" fullWidth id="inputPassword3" nbInput
+                       placeholder="Re-enter New Password" type="password">
               </div>
             </div>
             <div class="form-group row">
               <div class="offset-sm-3 col-sm-9">
-                <button nbButton status="primary" type="submit">Change Password</button>
+                <button [disabled]="passwordForm.invalid" nbButton status="primary" type="submit">Change Password
+                </button>
               </div>
             </div>
           </form>

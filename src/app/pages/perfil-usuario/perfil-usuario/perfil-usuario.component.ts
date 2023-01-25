@@ -4,6 +4,7 @@ import {User} from '../../seguridad/models/user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../seguridad/services/user.service';
 import {NbToastrService} from '@nebular/theme';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-perfil-usuario',
@@ -13,6 +14,11 @@ import {NbToastrService} from '@nebular/theme';
 export class PerfilUsuarioComponent implements OnInit {
   public usuario: User;
   public perfilForm: FormGroup;
+  public passwordForm = this.formBuilder.group({
+    c_password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+    r_password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+  });
 
 
   constructor(private authService: AuthService,
@@ -39,6 +45,16 @@ export class PerfilUsuarioComponent implements OnInit {
         this.usuario.email = email;
         this.toastrService.success('User Edited successfully!', 'Done!');
       });
+  }
+
+  cambiarPassword() {
+    this.userService.changePassword(this.usuario._id, this.passwordForm.value)
+      .subscribe(resp => {
+          console.log(resp);
+          this.passwordForm.reset();
+          this.toastrService.success('Password Updated Successfully!', 'Done!');
+        },
+        error => Swal.fire('Error', error.error.message, 'error'));
   }
 
 }

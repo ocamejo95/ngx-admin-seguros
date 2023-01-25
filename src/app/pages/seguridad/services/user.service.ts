@@ -27,6 +27,10 @@ export class UserService {
     return this.http.delete(`${environment.API_INTERNET}/user/${id}`);
   }
 
+  changePassword(id: string, data): Observable<any> {
+    return this.http.post(`${environment.API_INTERNET}/user/changePassword/${id}`, data);
+  }
+
   get token() {
     return localStorage.getItem('token');
   }
