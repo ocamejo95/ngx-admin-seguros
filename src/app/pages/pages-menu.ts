@@ -17,15 +17,23 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Clients Only in Sherpa',
-        link: '/pages/company-1/indicador-1',
+        link: '/pages/company/indicador-1',
       },
       {
         title: 'Clients Only CS',
-        link: '/pages/company-1/indicador-2',
+        link: '/pages/company/indicador-2',
       },
       {
         title: 'Clients Only in Sherpa',
-        link: '/pages/company-1/indicador-3',
+        link: '/pages/company/indicador-3',
+      },
+      {
+        title: 'InformClientsCSgood',
+        link: '/pages/company/indicador-4',
+      },
+      {
+        title: 'FindElementsRepeatDate',
+        link: '/pages/company/indicador-5',
       },
     ],
   },

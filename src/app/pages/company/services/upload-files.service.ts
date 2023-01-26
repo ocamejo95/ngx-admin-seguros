@@ -25,7 +25,7 @@ export class UploadFilesService {
     return this.http.post(`${environment.API_INTERNET}${url}`, formularioDatos).subscribe((response: any) => {
       this.list = response.message;
       this.toastrService.success('Upload Files Successfully!', 'Done!');
-      this.router.navigate(['/pages/company-1/indicador-1']);
+      this.router.navigate(['/pages/company/indicador-1']);
     });
   }
 
